@@ -10,7 +10,7 @@ function App() {
     setFormData({ data });
   };
   return (
-    <div className="App">
+    <div className="bg-green-100">
       <div>
         <FormLogic onSubmit={handleFormSubmit} />
         <Result data={formData} />

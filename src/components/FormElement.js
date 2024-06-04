@@ -8,8 +8,15 @@ function FormElement({
   fieldRef,
   hasError,
 }) {
-  const classes =
-    "form-control w-1/2 px-3 py-1.5 text-gray-700 rounded border border-solid border-gray-300 focus:border-green-600 focus:outline-none";
+  const general_style =
+    "form-control px-3 py-1.5 text-gray-700 rounded border border-solid border-gray-300 focus:border-green-600 focus:outline-none";
+
+  const text_input_style =
+    "form-control w-[400px] px-3 h-10 py-1.5 text-gray-700 rounded border border-solid border-gray-300 focus:border-green-600 focus:outline-none";
+
+  const textarea_style =
+    "form-control w-[820px] px-3 h-10 py-1.5 text-gray-700 rounded border border-solid border-gray-300 focus:border-green-600 focus:outline-none";
+
   const handleCheckboxChange = (value) => {
     if (fieldRef.value.includes(value)) {
       fieldRef.onChange(fieldRef.value.filter((item) => item !== value));
@@ -24,7 +31,7 @@ function FormElement({
       </label>
       {type === "textarea" ? (
         <textarea
-          className={classes}
+          className={textarea_style}
           rows="3"
           placeholder={placeholder}
           {...fieldRef}
@@ -35,7 +42,7 @@ function FormElement({
             <label key={option.value} className="flex items-center gap-2">
               <input
                 type="radio"
-                className={classes}
+                className={general_style}
                 value={option.value}
                 checked={fieldRef.value === option.value}
                 onChange={() => fieldRef.onChange(option.value)}
@@ -50,7 +57,7 @@ function FormElement({
             <label key={option.value} className="flex items-center gap-2">
               <input
                 type="checkbox"
-                className={classes}
+                className={general_style}
                 value={option.value}
                 checked={fieldRef.value.includes(option.label)}
                 onChange={() => handleCheckboxChange(option.label)}
@@ -62,7 +69,7 @@ function FormElement({
       ) : (
         <input
           type={type}
-          className={classes}
+          className={text_input_style}
           placeholder={placeholder}
           {...fieldRef}
         />
