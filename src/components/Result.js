@@ -25,6 +25,7 @@ function Result({ data }) {
           </ul>
         );
       })}
+      <p>Uploaded File: {data.data.file}</p>
       <p>Age: {data.data.age}</p>
     </div>
   );
