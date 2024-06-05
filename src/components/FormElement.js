@@ -7,6 +7,7 @@ function FormElement({
   options,
   fieldRef,
   hasError,
+  errorMessage,
 }) {
   const general_style =
     "form-control px-3 py-1.5 text-gray-700 rounded border border-solid border-gray-300 focus:border-green-600 focus:outline-none";
@@ -24,6 +25,7 @@ function FormElement({
       fieldRef.onChange([...fieldRef.value, value]);
     }
   };
+
   return (
     <div className="form-group mb-6">
       <label className="block text-gray-700 text-md font-bold mb-2 ">
@@ -75,7 +77,7 @@ function FormElement({
         />
       )}
       {hasError && (
-        <p className="text-red-500 text-xs italic">{`${label} is required`}</p>
+        <p className="text-red-500 text-xs italic">{errorMessage}</p>
       )}
     </div>
   );

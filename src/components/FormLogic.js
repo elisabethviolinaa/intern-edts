@@ -38,14 +38,24 @@ function FormLogic({ onSubmit }) {
             <Controller
               name="name"
               control={control}
-              rules={{ required: true }}
+              rules={{ required: true, maxLength: 25 }}
               render={({ field }) => (
                 <FormElement
                   type="text"
                   label="Name"
                   placeholder="Enter name here..."
                   fieldRef={field}
-                  hasError={errors.name?.type === "required"}
+                  hasError={
+                    errors.name?.type === "required" ||
+                    errors.name?.type === "maxLength"
+                  }
+                  errorMessage={
+                    errors.name?.type === "required"
+                      ? "Name is required"
+                      : errors.name?.type === "maxLength"
+                      ? "Name cannot exceed 25 characters"
+                      : ""
+                  }
                 />
               )}
             />
@@ -61,6 +71,9 @@ function FormLogic({ onSubmit }) {
                   placeholder="Enter your email here..."
                   fieldRef={field}
                   hasError={errors.email?.type === "required"}
+                  errorMessage={
+                    errors.email?.type === "required" ? "Email is required" : ""
+                  }
                 />
               )}
             />
@@ -77,6 +90,9 @@ function FormLogic({ onSubmit }) {
                   label="Input file for Dino"
                   fieldRef={field}
                   hasError={errors.file?.type === "required"}
+                  errorMessage={
+                    errors.file?.type === "required" ? "File is required" : ""
+                  }
                 />
               )}
             />
@@ -84,13 +100,20 @@ function FormLogic({ onSubmit }) {
             <Controller
               name="age"
               control={control}
-              rules={{ required: true }}
+              rules={{ required: true, min: 18 }}
               render={({ field }) => (
                 <FormElement
                   type="number"
                   label="What is your age?"
                   fieldRef={field}
                   hasError={errors.age?.type === "required"}
+                  errorMessage={
+                    errors.age?.type === "required"
+                      ? "Age is required"
+                      : errors.age?.type === "min"
+                      ? "Age must be at least 18"
+                      : ""
+                  }
                 />
               )}
             />
@@ -107,6 +130,11 @@ function FormLogic({ onSubmit }) {
                   label="Submit Date"
                   fieldRef={field}
                   hasError={errors.submit_date?.type === "required"}
+                  errorMessage={
+                    errors.submit_date?.type === "required"
+                      ? "Submit Date is required"
+                      : ""
+                  }
                 />
               )}
             />
@@ -120,6 +148,11 @@ function FormLogic({ onSubmit }) {
                   label="Insert Password"
                   fieldRef={field}
                   hasError={errors.password?.type === "required"}
+                  errorMessage={
+                    errors.password?.type === "required"
+                      ? "Password is required"
+                      : ""
+                  }
                 />
               )}
             />
@@ -136,6 +169,11 @@ function FormLogic({ onSubmit }) {
                 placeholder="Enter your message here..."
                 fieldRef={field}
                 hasError={errors.message?.type === "required"}
+                errorMessage={
+                  errors.message?.type === "required"
+                    ? "Message is required"
+                    : ""
+                }
               />
             )}
           />
@@ -155,6 +193,11 @@ function FormLogic({ onSubmit }) {
                 ]}
                 fieldRef={field}
                 hasError={errors.fav_color?.type === "required"}
+                errorMessage={
+                  errors.message?.type === "required"
+                    ? "Favorite Color is required"
+                    : ""
+                }
               />
             )}
           />
@@ -173,6 +216,9 @@ function FormLogic({ onSubmit }) {
                 ]}
                 fieldRef={field}
                 hasError={errors.roles?.type === "required"}
+                errorMessage={
+                  errors.roles?.type === "required" ? "Roles are required" : ""
+                }
               />
             )}
           />
